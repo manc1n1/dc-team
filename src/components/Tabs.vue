@@ -1,10 +1,9 @@
 <script setup>
-import { ref } from "vue";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
 import Form from "./Form.vue";
 import Table from "./Table.vue";
 
-const tabs = ref({ Form: [{}], Table: [{}] });
+const tabs = ["Form", "Table"];
 </script>
 
 <template>
@@ -16,7 +15,7 @@ const tabs = ref({ Form: [{}], Table: [{}] });
                 class="flex space-x-1 rounded-xl bg-slate-500 dark:bg-slate-400 p-1"
             >
                 <Tab
-                    v-for="tab in Object.keys(tabs)"
+                    v-for="tab in tabs"
                     as="template"
                     :key="tab"
                     v-slot="{ selected }"
