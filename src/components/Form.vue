@@ -1,75 +1,108 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import axios from "axios";
+
+let first_name = ref("");
+let last_name = ref("");
+let login_id = ref("");
+let email = ref("");
+let team = ref("");
+
+let submit = () => {
+    axios
+        .post("https://cycling-api.cvoapis.com/magento/dc_team", {
+            first_name: first_name.value,
+            last_name: last_name.value,
+            login_id: login_id.value,
+            email: email.value,
+            team: team.value,
+        })
+        .then((response) => console.log(response));
+
+    first_name.value = "";
+    last_name.value = "";
+    login_id.value = "";
+    email.value = "";
+    team.value = "";
+};
+</script>
 
 <template>
     <div class="container mx-auto px-20 md:px-44 lg:px-60 xl:px-80 2xl:px-80">
-        <form>
-            <!--text-slate-800 dark:text-slate-400-->
-            <!-- bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 -->
+        <form @submit.prevent="submit">
             <div class="relative z-0 mb-6 w-full group">
                 <input
                     type="text"
-                    name="floating_first_name"
-                    id="floating_first_name"
+                    name="first_name"
+                    id="first_name"
+                    v-model="first_name"
                     class="block py-2.5 px-0 w-full text-lg bg-clip-text text-black/[0.2] dark:text-white/[0.2] bg-gradient-to-r from-pink-500 to-violet-500 border-0 border-b-2 border-slate-400 appearance-none dark:border-slate-400 focus:outline-none focus:ring-0 focus:border-pink-400 peer"
                     placeholder=" "
                     required
                 />
                 <label
-                    for="floating_first_name"
+                    for="first_name"
                     class="peer-focus:font-medium absolute text-md text-slate-800 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >First name</label
                 >
             </div>
+
             <div class="relative z-0 mb-6 w-full group">
                 <input
                     type="text"
-                    name="floating_last_name"
-                    id="floating_last_name"
+                    name="last_name"
+                    id="last_name"
+                    v-model="last_name"
                     class="block py-2.5 px-0 w-full text-lg bg-clip-text text-black/[0.2] dark:text-white/[0.2] bg-gradient-to-r from-pink-500 to-violet-500 border-0 border-b-2 border-slate-400 appearance-none dark:border-slate-400 focus:outline-none focus:ring-0 focus:border-pink-400 peer"
                     placeholder=" "
                     required
                 />
                 <label
-                    for="floating_last_name"
+                    for="last_name"
                     class="peer-focus:font-medium absolute text-md text-slate-800 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >Last name</label
                 >
             </div>
+
             <div class="relative z-0 mb-6 w-full group">
                 <input
                     type="text"
-                    name="floating_login_id"
-                    id="floating_login_id"
+                    name="login_id"
+                    id="login_id"
+                    v-model="login_id"
                     class="block py-2.5 px-0 w-full text-lg bg-clip-text text-black/[0.2] dark:text-white/[0.2] bg-gradient-to-r from-pink-500 to-violet-500 border-0 border-b-2 border-slate-400 appearance-none dark:border-slate-400 focus:outline-none focus:ring-0 focus:border-pink-400 peer"
                     placeholder=" "
                     required
                 />
                 <label
-                    for="floating_login_id"
+                    for="login_id"
                     class="peer-focus:font-medium absolute text-md text-slate-800 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >Login ID</label
                 >
             </div>
+
             <div class="relative z-0 mb-6 w-full group">
                 <input
                     type="email"
-                    name="floating_email"
-                    id="floating_email"
+                    name="email"
+                    id="email"
+                    v-model="email"
+                    pattern="[A-Za-z0-9._+-]+@[A-Za-z0-9 -]+\.[a-z]{2,}"
                     class="block py-2.5 px-0 w-full text-lg bg-clip-text text-black/[0.2] dark:text-white/[0.2] bg-gradient-to-r from-pink-500 to-violet-500 border-0 border-b-2 border-slate-400 appearance-none dark:border-slate-400 focus:outline-none focus:ring-0 focus:border-pink-400 peer"
                     placeholder=" "
                     required
                 />
                 <label
-                    for="floating_email"
+                    for="email"
                     class="peer-focus:font-medium absolute text-md text-slate-800 dark:text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >Email address</label
                 >
             </div>
-            <label for="underline_select" class="sr-only"
-                >Underline select</label
-            >
+
+            <label for="team" class="sr-only"></label>
             <select
-                id="underline_select"
+                id="team"
+                v-model="team"
                 class="block py-2.5 px-0 w-full text-lg bg-clip-text text-black/[0.2] dark:text-white/[0.2] bg-gradient-to-r from-pink-500 to-violet-500 border-0 border-b-2 border-slate-400 appearance-none dark:border-slate-400 focus:outline-none focus:ring-0 focus:border-pink-400 peer"
                 required
             >
@@ -82,6 +115,7 @@
                 <option class="text-black" value="Refurb">Refurb</option>
                 <option class="text-black" value="Shipping">Shipping</option>
             </select>
+
             <div class="mt-6">
                 <button
                     type="submit"

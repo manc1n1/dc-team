@@ -1,4 +1,18 @@
-<script setup></script>
+<script setup>
+import TableRow from "./TableRow.vue";
+import { onMounted, ref } from "vue";
+import axios from "axios";
+
+const employees = ref([]);
+
+onMounted(async () => {
+    await axios
+        .get("https://cycling-api.cvoapis.com/magento/dc_team")
+        .then((response) => {
+            employees.value = response.data;
+        });
+});
+</script>
 
 <template>
     <div class="container mx-auto overflow-auto rounded-xl">
@@ -17,19 +31,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    class="bg-slate-200 border-b dark:bg-slate-800 border-slate-700"
-                >
-                    <td class="py-4 px-6">Joe</td>
-                    <td class="py-4 px-6">Mancini</td>
-                    <td class="py-4 px-6">jmancini</td>
-                    <td
-                        class="py-4 px-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500"
-                    >
-                        jmancini@cvoptical.com
-                    </td>
-                    <td class="py-4 px-6">IT</td>
-                </tr>
+                <TableRow
+                    v-for="employee in employees"
+                    :first_name="employee.first_name"
+                    :last_name="employee.last_name"
+                    :login_id="employee.login_id"
+                    :email="employee.email"
+                    :team="employee.team"
+                />
             </tbody>
         </table>
     </div>

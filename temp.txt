@@ -1,0 +1,11 @@
+API Endpoint: https://cycling-api.cvoapis.com/magento/dc_team 
+Method: POST
+
+JSON Payload: 
+{
+    "first_name": "<firstname>", 
+    "last_name": "<lastname>", 
+    "login_id": "<LoginID>", 
+    "email": <EmailAddress>, 
+    "team": "<TeamName>"
+}
