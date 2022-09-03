@@ -30,6 +30,7 @@ let submit = () => {
 <template>
     <div class="container mx-auto px-20 md:px-44 lg:px-60 xl:px-80 2xl:px-80">
         <form @submit.prevent="submit">
+            <!-- First name -->
             <div class="relative z-0 mb-6 w-full group">
                 <input
                     type="text"
@@ -46,7 +47,7 @@ let submit = () => {
                     >First name</label
                 >
             </div>
-
+            <!-- Last name -->
             <div class="relative z-0 mb-6 w-full group">
                 <input
                     type="text"
@@ -63,7 +64,7 @@ let submit = () => {
                     >Last name</label
                 >
             </div>
-
+            <!-- Login ID -->
             <div class="relative z-0 mb-6 w-full group">
                 <input
                     type="text"
@@ -80,7 +81,7 @@ let submit = () => {
                     >Login ID</label
                 >
             </div>
-
+            <!-- Email address -->
             <div class="relative z-0 mb-6 w-full group">
                 <input
                     type="email"
@@ -98,7 +99,7 @@ let submit = () => {
                     >Email address</label
                 >
             </div>
-
+            <!-- Team selector -->
             <label for="team" class="sr-only"></label>
             <select
                 id="team"
@@ -115,11 +116,11 @@ let submit = () => {
                 <option class="text-black" value="Refurb">Refurb</option>
                 <option class="text-black" value="Shipping">Shipping</option>
             </select>
-
+            <!-- Submit button -->
             <div class="mt-6">
                 <button
                     type="submit"
-                    class="text-white bg-gradient-to-r from-blue-500 to-violet-500 hover:from-pink-500 hover:to-violet-500 focus:ring-4 focus:outline-none focus:ring-slate-400 font-bold rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center"
+                    class="text-white transition-all duration-500 bg-gradient-to-r to-violet-500 via-pink-500 from-blue-500 bg-size-200 hover:bg-right focus:ring-4 focus:outline-none focus:ring-slate-400 font-bold rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center"
                 >
                     Submit
                 </button>
